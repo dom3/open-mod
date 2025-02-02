@@ -74,7 +74,7 @@ bool RatesLayer::init()
                 }
             } else if (web::WebProgress* p = e->getProgress()) {
                 gd::string d = "";
-                d.append(numToString(p->uploadProgress().value_or(0.f)));
+                d.append(numToString(p->uploaded()));
                 m_loadingText->setCString(d.append("%").c_str());
             } else if (e->isCancelled()) {
                 log::info("Request was cancelled.");
