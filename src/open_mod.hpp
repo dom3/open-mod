@@ -10,7 +10,7 @@ struct OpenMod {
         return instance;
     };
 
-    web::WebTask rate(GJGameLevel* level);
+    web::WebTask rate(GJGameLevel* level, std::string sessionID);
     web::WebTask exists(GJGameLevel* level);
     web::WebTask getAll();
 

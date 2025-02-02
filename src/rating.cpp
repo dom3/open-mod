@@ -3,6 +3,8 @@
 
 #include "open_mod.hpp"
 
+#include "authentication.hpp"
+
 using namespace geode::prelude;
 
 #include <Geode/modify/LevelInfoLayer.hpp>
@@ -42,32 +44,34 @@ class $modify(_LevelInfoLayer, LevelInfoLayer) {
         if (m_fields->loading) return;
         m_fields->loading = true;
 
-        auto task = OpenMod::get()->rate(m_level);
+        AuthenticationManager::get()->getAuthenticationToken([&](std::string token) {
+            auto task = OpenMod::get()->rate(m_level, token);
 
-        m_fields->m_listener.bind([this, sender] (web::WebTask::Event* e) {
-            if (web::WebResponse* res = e->getValue()) {
-                log::info("Rate Data: {}", res->string().unwrapOr("Uh oh!"));
-                auto data = res->json().unwrap();
-                auto status_code = data.get<int>("status_code").unwrapOr(1);
-                if (status_code == 1) {
-                    failedToRate(sender);
-                    log::error("Already rated by this user {}.", GJAccountManager::get()->m_username);
-                    return;
-                } else {
-                    FLAlertLayer::create(
-                        "Rated!",
-                        "You rated " + (m_level->m_levelName),
-                        "Close"
-                    )->show();
-                    return;
+            m_fields->m_listener.bind([this, sender] (web::WebTask::Event* e) {
+                if (web::WebResponse* res = e->getValue()) {
+                    log::info("Rate Data: {}", res->string().unwrapOr("Uh oh!"));
+                    auto data = res->json().unwrap();
+                    auto status_code = data.get<int>("status_code").unwrapOr(1);
+                    if (status_code == 1) {
+                        failedToRate(sender);
+                        log::error("Already rated by this user {}.", GJAccountManager::get()->m_username);
+                        return;
+                    } else {
+                        FLAlertLayer::create(
+                            "Rated!",
+                            "You rated " + (m_level->m_levelName),
+                            "Close"
+                        )->show();
+                        return;
+                    }
+                } else if (web::WebProgress* p = e->getProgress()) {
+                } else if (e->isCancelled()) {
+                    log::info("Request was cancelled.");
                 }
-            } else if (web::WebProgress* p = e->getProgress()) {
-            } else if (e->isCancelled()) {
-                log::info("Request was cancelled.");
-            }
-        });
+            });
 
-        m_fields->m_listener.setFilter(task);
+            m_fields->m_listener.setFilter(task);
+        });
     }
 
     bool init(GJGameLevel* level, bool challenge) {

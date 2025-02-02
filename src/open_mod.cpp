@@ -1,14 +1,17 @@
 #include "open_mod.hpp"
 
-web::WebTask OpenMod::rate(GJGameLevel *level)
+std::string API_URL = "https://open-mod-api.vercel.app/api/";
+
+web::WebTask OpenMod::rate(GJGameLevel *level, std::string sessionID)
 {
     web::WebRequest req = web::WebRequest();
     auto body = matjson::Value();
     body["userid"] = GJAccountManager::get()->m_accountID;
     body["levelid"] = level->m_levelID.value();
+    body["sessionid"] = sessionID;
     req.bodyJSON(body);
 
-    auto task = req.post("https://open-mod-api.vercel.app/api/rate");
+    auto task = req.post(API_URL + "rate");
     return task;
 }
 
@@ -20,14 +23,14 @@ web::WebTask OpenMod::exists(GJGameLevel *level)
     body["levelid"] = level->m_levelID.value();
     req.bodyJSON(body);
 
-    auto task = req.post("https://open-mod-api.vercel.app/api/exists/");
+    auto task = req.post(API_URL + "exists/");
     return task;
 }
 
 web::WebTask OpenMod::getAll()
 {
     web::WebRequest req = web::WebRequest();
-    auto task = req.get("https://open-mod-api.vercel.app/api/get/");
+    auto task = req.get(API_URL + "get/");
     return task;
 }
 

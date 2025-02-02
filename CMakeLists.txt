@@ -14,6 +14,8 @@ add_library(${PROJECT_NAME} SHARED
     src/rates_layer.hpp
     src/rates_layer.cpp
     src/cell_hook.cpp
+    src/authentication.cpp
+    src/authentication.hpp
     # Add any extra C++ source files here
 )
 
