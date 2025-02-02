@@ -8,7 +8,7 @@ Help smaller creators get recognition and play a role in the active rating of le
 - You can rate a level again when your rate expires.
 
 # Credits
-- The Geode Discord - cool
+- [Geode SDK Documentation](https://docs.geode-sdk.org/) - well written
 - Capeling - Un-stupdified me
 - GDDP integeration - Borrowed some code
 - Demonlist integration - Also borrowed some code.
