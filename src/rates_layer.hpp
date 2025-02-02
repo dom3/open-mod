@@ -22,9 +22,9 @@ class RatesLayer : public CCLayer, LevelManagerDelegate {
         const int MAX_SEARCH_RESULTS = 10;
         int m_currentPage = 0;
 
-        virtual bool init() override;
-        virtual void onExit() override;
-        virtual void keyBackClicked() override;
+        virtual bool init() ;
+        virtual void onExit();
+        virtual void keyBackClicked();
 
         void back(CCObject*);
         void update_list(matjson::Value data);
@@ -32,11 +32,11 @@ class RatesLayer : public CCLayer, LevelManagerDelegate {
         
         GJGameLevel* getLevelById(int id);
 
+        virtual ~RatesLayer();
+
     public:
         static RatesLayer* create();
         void callback(CCObject* sender);
 
         void reloadList();
-
-        ~RatesLayer();
 };
