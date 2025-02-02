@@ -10,5 +10,5 @@ Help smaller creators get recognition and play a role in the active rating of le
 # Credits
 - [Geode SDK Documentation](https://docs.geode-sdk.org/) - well written
 - Capeling - Un-stupdified me
-- GDDP integeration - Borrowed some code
-- Demonlist integration - Also borrowed some code.
+- SMJS - Helped me with some security stuff
+- [GDDP integeration](https://geode-sdk.org/mods/minemaker0430.gddp_integration) - Borrowed some code
