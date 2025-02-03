@@ -18,8 +18,9 @@ class $modify(_LevelInfoLayer, LevelInfoLayer) {
 
     void setText(const char* text, bool clickable) {
         auto menu = this->getChildByID("back-menu");
-        auto label = CCLabelBMFont::create(text, "gjFont59.fnt");
+        auto label = CCLabelBMFont::create(text, "chatFont.fnt");
         label->setOpacity(clickable ? 100 : 25);
+        label->setScale(0.8f);
 
         auto btn = CCMenuItemSpriteExtra::create(
             label,

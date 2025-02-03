@@ -10,6 +10,8 @@ bool RatesLayer::init()
     if (!CCLayer::init())
         return false;
 
+    this->setKeypadEnabled(true);
+
     OpenMod::get()->inRatingMenu = true;
 
     this->setID("RateLayer"_spr);
