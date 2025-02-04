@@ -4,3 +4,6 @@
 # 1.0.1
 - Changed the font and size of the rate text
 - Added support for ESC on the rate menu
+
+# 1.0.2
+- Added fig to the credits

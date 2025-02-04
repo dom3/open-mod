@@ -12,3 +12,4 @@ Help smaller creators get recognition and play a role in the active rating of le
 - Capeling - Un-stupdified me
 - SMJS - Helped me with some security stuff
 - [GDDP integeration](https://geode-sdk.org/mods/minemaker0430.gddp_integration) - Borrowed some code
+- Fig (GDAuth) - Perfect thing I needed and I didn't even know it was real

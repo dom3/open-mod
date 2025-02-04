@@ -89,8 +89,8 @@ class $modify(_LevelInfoLayer, LevelInfoLayer) {
         m_fields->m_listener.bind([this] (web::WebTask::Event* e) {
             if (web::WebResponse* res = e->getValue()) {
                 log::info("Rate Data: {}", res->string().unwrapOr("Uh oh!"));
-                auto data = res->json().unwrap();
-                auto status_code = data.get<int>("status_code").unwrapOr(1);
+                auto data = res->json().unwrapOr(matjson::Value());
+                auto status_code = data.get<int>("status_code").unwrapOr(-1);
                 if (status_code == 1) {
                     setText("Rate", true);
                     return;
