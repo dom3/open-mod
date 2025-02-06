@@ -32,7 +32,7 @@ class RatesLayer : public CCLayer, LevelManagerDelegate {
         
         GJGameLevel* getLevelById(int id);
 
-        virtual ~RatesLayer();
+        ~RatesLayer();
 
     public:
         static RatesLayer* create();

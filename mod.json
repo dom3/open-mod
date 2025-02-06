@@ -2,13 +2,18 @@
 	"geode": "4.2.0",
 	"gd": {
 		"win": "2.2074",
-		"android": "2.2074",
 		"mac": "2.2074",
 		"ios": "2.2074"
 	},
 	"id": "domohyes.open-mod",
-	"name": "open-mod",
+	"name": "Open Mod",
 	"version": "v1.0.2",
 	"developer": "domohyes",
-	"description": "Help get levels rated"
+	"description": "Help get levels rated",
+	"dependencies": [
+		{
+			"id": "geode.node-ids",
+			"version": ">=1.19.0"
+		}
+	]
 }
